@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Breaking News</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="bg-light p-5 rounded-lg m-3">
+        <h1 class="display-4">Breaking News</h1>
+    </div>
+    <table class="table">
+        <tr th:each="item :${news}" >
+            <div class="card" style="margin-top: 20px">
+                <img class="card-img-top" style="width: 100%; height: 25vw; object-fit: cover;" th:if="${not #strings.isEmpty(item.urlToImage)}"
+                     th:src="${item.urlToImage}"/>
+                <div style="margin: 5px">
+
+                <a class="card-title" th:href="${item.url}">
+                    <h3 th:text="${item.title}"/>
+                </a>
+                <p class="card-text" th:text="${item.description}"/>
+                </div>
+            </div>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
