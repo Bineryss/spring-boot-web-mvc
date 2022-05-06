@@ -8,25 +8,25 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Component
-public class NewsUserRepositoryImplDummy implements NewsUserRepository {
+//@Component - only for initial testing
+public class NewsUserRepositoryImplDummy {
     private final Map<String, NewsUser> map = new ConcurrentHashMap<>();
 
     public NewsUserRepositoryImplDummy(PasswordEncoder passwordEncoder) {
         map.put("buck", new NewsUser("buck", passwordEncoder.encode("buck"), "Buck", "Rogers", LocalDate.now()));
     }
-    @Override
+//    @Override
     public NewsUser findByUsername(String username) {
         return map.get(username);
     }
 
-    @Override
+//    @Override
     public NewsUser save(NewsUser user) {
         map.put(user.getUsername(), user);
         return user;
     }
 
-    @Override
+//    @Override
     public long count() {
         return map.size();
     }
